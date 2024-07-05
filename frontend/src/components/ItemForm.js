@@ -140,7 +140,7 @@ const ItemForm = ({ item, onSuccess }) => {
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div>
-                        <label>Phone:</label>
+                        <label>Contact No.:</label>
                         <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </div>
                     <div>
