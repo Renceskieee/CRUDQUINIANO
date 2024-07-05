@@ -29,7 +29,7 @@ const ItemList = ({ onEdit, onDelete }) => {
                         <th>Last Name</th>
                         <th>Address</th>
                         <th>Email</th>
-                        <th>Contact No.</th>
+                        <th>Phone</th>
                         <th>Sex</th>
                         <th>Birthday</th>
                         <th>Place of Birth</th>
