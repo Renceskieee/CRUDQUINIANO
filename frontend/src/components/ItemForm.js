@@ -76,24 +76,20 @@ const ItemForm = ({ item, onSuccess }) => {
             address,
             email,
             phone,
-            
             sex,
             birthday,
             place_of_birth: placeOfBirth,
             civil_status: civilStatus,
             religion,
             citizenship,
-            
             father_first_name: fatherFirstName,
             father_middle_name: fatherMiddleName,
             father_last_name: fatherLastName,
             father_occupation: fatherOccupation,
-            
             mother_first_name: motherFirstName,
             mother_middle_name: motherMiddleName,
             mother_last_name: motherLastName,
             mother_occupation: motherOccupation,
-            
             elementary,
             secondary,
             vocational_trade_course: vocationalTradeCourse,
@@ -103,16 +99,24 @@ const ItemForm = ({ item, onSuccess }) => {
         };
         try {
             if (item) {
-                await
-                axios.put(`http://localhost:8000/api/items/${item.id}/`, data);
+                await axios.put(`http://localhost:8000/api/items/${item.id}/`, data);
             } else {
-                axios.post('http://localhost:8000/api/items/', data);
+                await axios.post('http://localhost:8000/api/items/', data);
             }
             onSuccess();
         } catch (error) {
-            console.error('There was an error submitting the form!', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+                console.error('Response status:', error.response.status);
+                console.error('Response headers:', error.response.headers);
+            } else if (error.request) {
+                console.error('Request data:', error.request);
+            } else {
+                console.error('Error message:', error.message);
+            }
+            console.error('Config:', error.config);
         }
-    };
+    };    
 
     return (
         <div className="form-container">
