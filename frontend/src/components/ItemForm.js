@@ -150,6 +150,7 @@ const ItemForm = ({ item, onSuccess }) => {
                     <div>
                         <label>Sex:</label>
                         <select value={sex} onChange={(e) => setSex(e.target.value)}>
+                            <option value="male">Select</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -165,6 +166,7 @@ const ItemForm = ({ item, onSuccess }) => {
                     <div>
                         <label>Civil Status:</label>
                         <select value={civilStatus} onChange={(e) => setCivilStatus(e.target.value)}>
+                            <option value="male">Select</option>
                             <option value="single">Single</option>
                             <option value="married">Married</option>
                             <option value="widowed">Widowed</option>
