@@ -97,26 +97,49 @@ const ItemForm = ({ item, onSuccess }) => {
             course_program: courseProgram,
             favourite_group: favouriteGroup,
         };
+
         try {
             if (item) {
                 await axios.put(`http://localhost:8000/api/items/${item.id}/`, data);
             } else {
-                await axios.post('http://localhost:8000/api/items/', data);
+                const response = await axios.post('http://localhost:8000/api/items/', data);
+                console.log('Item created:', response.data);
             }
             onSuccess();
+            clearFormFields();
         } catch (error) {
-            if (error.response) {
-                console.error('Response data:', error.response.data);
-                console.error('Response status:', error.response.status);
-                console.error('Response headers:', error.response.headers);
-            } else if (error.request) {
-                console.error('Request data:', error.request);
-            } else {
-                console.error('Error message:', error.message);
-            }
-            console.error('Config:', error.config);
+            console.error('Error submitting the form:', error);
         }
-    };    
+    };
+
+    const clearFormFields = () => {
+        setFirstName('');
+        setMiddleName('');
+        setLastName('');
+        setAddress('');
+        setEmail('');
+        setPhone('');
+        setSex('');
+        setBirthday('');
+        setPlaceOfBirth('');
+        setCivilStatus('');
+        setReligion('');
+        setCitizenship('');
+        setFatherFirstName('');
+        setFatherMiddleName('');
+        setFatherLastName('');
+        setFatherOccupation('');
+        setMotherFirstName('');
+        setMotherMiddleName('');
+        setMotherLastName('');
+        setMotherOccupation('');
+        setElementary('');
+        setSecondary('');
+        setVocationalTradeCourse('');
+        setCollege('');
+        setCourseProgram('');
+        setFavouriteGroup('');
+    };
 
     return (
         <div className="form-container">
@@ -150,7 +173,7 @@ const ItemForm = ({ item, onSuccess }) => {
                     <div>
                         <label>Sex:</label>
                         <select value={sex} onChange={(e) => setSex(e.target.value)}>
-                            <option value="male">Select</option>
+                            <option value="select">Select</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -166,7 +189,7 @@ const ItemForm = ({ item, onSuccess }) => {
                     <div>
                         <label>Civil Status:</label>
                         <select value={civilStatus} onChange={(e) => setCivilStatus(e.target.value)}>
-                            <option value="male">Select</option>
+                            <option value="select">Select</option>
                             <option value="single">Single</option>
                             <option value="married">Married</option>
                             <option value="widowed">Widowed</option>
@@ -237,7 +260,8 @@ const ItemForm = ({ item, onSuccess }) => {
                         <label>Favourite Group:</label>
                         <input type="text" value={favouriteGroup} onChange={(e) => setFavouriteGroup(e.target.value)} />
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Submit</button>&emsp;
+                    <button type="button" onClick={clearFormFields}>Clear</button>
                 </form>
             </div>
         </div>
